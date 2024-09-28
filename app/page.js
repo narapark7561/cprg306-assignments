@@ -2,12 +2,12 @@
 import Link from "next/link";
 
 export default function Home() {
-  let linkStyles = "underline hover:text-green-500 font-bold";
+  let linkStyles = "underline hover:text-purple-500 font-bold";
 
   return (
     <main className="min-h-screen bg-pink-100 text-pink-500">
       <h1 className="text-3xl font-bold p-6 ">
-        💕 CPRG 306: Web Development 2 - Assignments 💕
+        💗 CPRG 306: Web Development 2 - Assignments 💗
       </h1>
       <ul style={{ fontSize: "20px", paddingTop: "20px", paddingLeft: "50px" }}>
         <li>
