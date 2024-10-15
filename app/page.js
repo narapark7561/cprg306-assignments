@@ -25,6 +25,11 @@ export default function Home() {
             ☑️ Week 4 Assignment
           </Link>
         </li>
+        <li>
+          <Link href="./week-5" className={linkStyles}>
+            ☑️ Week 5 Assignment
+          </Link>
+        </li>
       </ul>
     </main>
   );
