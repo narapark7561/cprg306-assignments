@@ -30,6 +30,11 @@ export default function Home() {
             ☑️ Week 5 Assignment
           </Link>
         </li>
+        <li>
+          <Link href="./week-6" className={linkStyles}>
+            ☑️ Week 6 Assignment
+          </Link>
+        </li>
       </ul>
     </main>
   );
