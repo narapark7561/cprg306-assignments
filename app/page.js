@@ -1,15 +1,15 @@
 // import Image from "next/image";
-import Link from "next/link";
+import Link from 'next/link';
 
 export default function Home() {
-  let linkStyles = "underline hover:text-purple-500 font-bold";
+  let linkStyles = 'underline hover:text-purple-500 font-bold';
 
   return (
     <main className="min-h-screen bg-pink-100 text-pink-500">
       <h1 className="text-3xl font-bold p-6 ">
         💗 CPRG 306: Web Development 2 - Assignments 💗
       </h1>
-      <ul style={{ fontSize: "20px", paddingTop: "20px", paddingLeft: "50px" }}>
+      <ul style={{ fontSize: '20px', paddingTop: '20px', paddingLeft: '50px' }}>
         <li>
           <Link href="./week-2" className={linkStyles}>
             ☑️ Week 2 Assignment
@@ -33,6 +33,11 @@ export default function Home() {
         <li>
           <Link href="./week-6" className={linkStyles}>
             ☑️ Week 6 Assignment
+          </Link>
+        </li>
+        <li>
+          <Link href="./week-7" className={linkStyles}>
+            ☑️ Week 7 Assignment
           </Link>
         </li>
       </ul>
