@@ -1,33 +1,26 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 
-export default function NewItem() {
+export default function NewItem({ onAddItem }) {
   const [quantity, setQuantity] = useState(1);
-  const [name, setName] = useState("");
-  const [category, setCategory] = useState("produce");
+  const [name, setName] = useState('');
+  const [category, setCategory] = useState('produce');
 
   const handleSubmit = (event) => {
     event.preventDefault();
     let item = {
+      id: Math.random().toString(36).substring(2, 9),
       name: name,
-      qty: quantity,
-      ct: category,
+      quantity: quantity,
+      category: category,
     };
 
-    console.log(
-      `You selected ${item.name} for ${item.qty} in ${item.ct} category`
-    );
+    onAddItem(item);
 
-    alert(`
-      Item: ${item.name}
-      Quantity: ${item.qty}
-      Category: ${item.ct}
-      `);
-
-    setName("");
+    setName('');
     setQuantity(1);
-    setCategory("produce");
+    setCategory('produce');
   };
 
   const handleItemNameChange = (event) => setName(event.target.value);
@@ -47,23 +40,23 @@ export default function NewItem() {
     }
   };
 
-  let incrementButtonStyles = "bg-blue-500 text-white rounded-md py-0.5 px-4";
-  let decrementButtonStyles = "bg-gray-400 text-white rounded-md py-0.5 px-4";
+  let incrementButtonStyles = 'bg-blue-500 text-white rounded-md py-0.5 px-4';
+  let decrementButtonStyles = 'bg-gray-400 text-white rounded-md py-0.5 px-4';
 
   if (quantity === 20) {
-    incrementButtonStyles = "bg-gray-400 text-white rounded-md py-0.5 px-4";
-    decrementButtonStyles = "bg-blue-500 text-white rounded-md py-0.5 px-4";
+    incrementButtonStyles = 'bg-gray-400 text-white rounded-md py-0.5 px-4';
+    decrementButtonStyles = 'bg-blue-500 text-white rounded-md py-0.5 px-4';
   } else if (quantity === 1) {
-    decrementButtonStyles = "bg-gray-400 text-white rounded-md py-0.5 px-4";
+    decrementButtonStyles = 'bg-gray-400 text-white rounded-md py-0.5 px-4';
   } else {
-    incrementButtonStyles = "bg-blue-500 text-white rounded-md py-0.5 px-4";
-    decrementButtonStyles = "bg-blue-500 text-white rounded-md py-0.5 px-4";
+    incrementButtonStyles = 'bg-blue-500 text-white rounded-md py-0.5 px-4';
+    decrementButtonStyles = 'bg-blue-500 text-white rounded-md py-0.5 px-4';
   }
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-sm mx-auto bg-gray-900 p-6 rounded-lg shadow-lg space-y-4"
+      className="max-w-sm bg-gray-900 p-6 rounded-lg shadow-lg space-y-4"
     >
       <div className="mb-4">
         <input
