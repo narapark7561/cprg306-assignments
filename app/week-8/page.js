@@ -4,6 +4,7 @@ import { useState } from 'react';
 import ItemList from './item-list';
 import NewItem from './new-item';
 import itemData from './item.json';
+import MealIdea from './meal-ideas';
 
 export default function Page() {
   const [items, setItems] = useState(itemData);
@@ -19,6 +20,7 @@ export default function Page() {
         </h1>
         <NewItem onAddItem={handleAddItem} />
         <ItemList items={items} />
+        <MealIdea />
       </main>
     );
   }
