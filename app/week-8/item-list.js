@@ -37,7 +37,11 @@ export default function ItemList({ items, onItemSelect }) {
       </p>
       <div>
         {sortedItems.map((item) => (
-          <Item key={item.id} {...item} onSelect={() => onItemSelect(item)} />
+          <Item
+            key={item.id}
+            {...item}
+            onSelect={() => onItemSelect(item.name)}
+          />
         ))}
       </div>
     </div>
