@@ -1,32 +1,50 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUserAuth } from '../_utils/auth-context';
 import ItemList from './item-list';
 import NewItem from './new-item';
-import itemData from './item.json';
 import MealIdea from './meal-ideas';
+import { getItems, addItem } from '../_services/shopping-list-service';
 
 export default function Page() {
   const { user } = useUserAuth();
   const router = useRouter();
+  console.log('Current User UID:', user?.uid);
 
-  const [items, setItems] = useState(itemData);
+  const [items, setItems] = useState([]);
   const [selectedItemName, setSelectedItemName] = useState('');
-  const handleAddItem = (item) => {
-    setItems([...items, item]);
+
+  const loadItems = async () => {
+    try {
+      if (user) {
+        const fetchedItems = await getItems(user.uid);
+        setItems(fetchedItems);
+      }
+    } catch (error) {
+      console.error('Error loading items:', error);
+    }
   };
-  if (!user) {
-    return (
-      <main className="p-10 bg-black min-h-screen flex ">
-        <h1 className="text-xl font-bold text-white">
-          You need to be signed in to view this page.
-        </h1>
-      </main>
-    );
-  }
-  function handleItemSelect(itemName) {
+
+  const handleAddItem = async (item) => {
+    try {
+      if (user) {
+        const newItemId = await addItem(user.uid, item);
+        setItems((prevItems) => [...prevItems, { ...item, id: newItemId }]);
+      }
+    } catch (error) {
+      console.error('Error adding item:', error);
+    }
+  };
+
+  useEffect(() => {
+    if (user) {
+      loadItems();
+    }
+  }, [user]);
+
+  const handleItemSelect = (itemName) => {
     console.log('Selected item name:', itemName);
 
     if (!itemName) {
@@ -42,6 +60,16 @@ export default function Page() {
       )
       .trim();
     setSelectedItemName(cleanedName);
+  };
+
+  if (!user) {
+    return (
+      <main className="p-10 bg-black min-h-screen flex">
+        <h1 className="text-xl font-bold text-white">
+          You need to be signed in to view this page.
+        </h1>
+      </main>
+    );
   }
 
   return (

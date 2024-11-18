@@ -33,7 +33,7 @@ export default function SignInPage() {
             <p>{user.email}</p>
             <img src={user.photoURL} className="w-10 h-10 " />
             <Link
-              href="/week-9/shopping-list"
+              href="/week-10/shopping-list"
               className="block mb-4 text-blue-500 hover:underline"
             >
               ➡️Click to Shopping List
